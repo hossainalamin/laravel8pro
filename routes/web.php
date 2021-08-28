@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FluentController;
 use App\Http\Controllers\FormValidation;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SessionCotroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::get('/fluent-string',[FluentController::class,'index'])->name("fluent.ind
 Route::get('/form',[FormValidation::class,'index'])->name('form.index');
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
 Route::post('/login',[LoginController::class,'loginSubmit'])->name('login.submit');
+Route::get('/session-get',[SessionCotroller::class,'getSession'])->name('session.get');
+Route::get('/session-set',[SessionCotroller::class,'setSession'])->name('session.set');
+Route::get('/session-remove',[SessionCotroller::class,'deleteSession'])->name('session.delete');
 
 //middleware
 Route::middleware(['auth', 'protected'])->group(function () {
