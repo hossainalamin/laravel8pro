@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class {{ class }} extends Controller
 {
-    public function create(){
-        
+    public function index(){
+
     }
 }
