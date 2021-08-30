@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FluentController;
 use App\Http\Controllers\FormValidation;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionCotroller;
 
 /*
@@ -30,12 +31,9 @@ Route::post('/login',[LoginController::class,'loginSubmit'])->name('login.submit
 Route::get('/session-get',[SessionCotroller::class,'getSession'])->name('session.get');
 Route::get('/session-set',[SessionCotroller::class,'setSession'])->name('session.set');
 Route::get('/session-remove',[SessionCotroller::class,'deleteSession'])->name('session.delete');
+Route::get('/posts',[PostController::class,'index'])->name('post.get');
 
 //middleware
-Route::middleware(['auth', 'protected'])->group(function () {
-    Route::view('/', 'welcome');
-});
-
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
 });
