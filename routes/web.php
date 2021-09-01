@@ -31,7 +31,10 @@ Route::post('/login',[LoginController::class,'loginSubmit'])->name('login.submit
 Route::get('/session-get',[SessionCotroller::class,'getSession'])->name('session.get');
 Route::get('/session-set',[SessionCotroller::class,'setSession'])->name('session.set');
 Route::get('/session-remove',[SessionCotroller::class,'deleteSession'])->name('session.delete');
-Route::get('/posts',[PostController::class,'index'])->name('post.get');
+Route::get('/posts',[PostController::class,'getAllPost'])->name('post.get');
+Route::get('/addpost',[PostController::class,'addPost'])->name('post.add');
+Route::post('/postsubmit',[PostController::class,'postSubmit'])->name('post.submit');
+Route::get('/post/{id}',[PostController::class,'getPostById'])->name('post.single');
 
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
