@@ -35,6 +35,9 @@ Route::get('/posts',[PostController::class,'getAllPost'])->name('post.get');
 Route::get('/addpost',[PostController::class,'addPost'])->name('post.add');
 Route::post('/postsubmit',[PostController::class,'postSubmit'])->name('post.submit');
 Route::get('/post/{id}',[PostController::class,'getPostById'])->name('post.single');
+Route::get('delete/{id}',[PostController::class,'delPostById'])->name('post.delete')->where('id','[0-9]+');
+Route::get('edit/{id}',[PostController::class,'editPostById'])->name('post.delete')->where('id','[0-9]+');
+Route::post('/edit-post',[PostController::class,'updatePost'])->name('post.update');
 
 //middleware
 Route::group(['middleware'=> ['protected']],function(){

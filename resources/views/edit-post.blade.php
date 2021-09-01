@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add post</title>
+    <title>post</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -13,28 +13,28 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
+                        @if(Session::has('update-msg'))
+                        <div class="alert alert-success">
+                            {{Session::get('update-msg')}}
+                        </div>
+                        @endif
                         <div class="card-header">
-                            Add Post
+                            Post edit
                         </div>
                         <div class="card-body">
-                            @if(Session::has('post-notification'))
-                                <div class="alert alert-success">
-                                    {{Session::get('post-notification')}}
-                                </div>
-                            @endif
-                            <form action="{{route('post.submit')}}" method="POST">
+                            <form action="{{route('post.update')}}" method="POST">
                                 @csrf
+                                <input type="hidden" value="{{$post->id}}" name="id">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Enter post title">
+                                    <input type="text" name="title" class="form-control" value="{{$post->title}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="body">Body</label>
-                                    <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="body"  cols="30" rows="10" class="form-control">{{$post->body}}</textarea>
                                 </div>
-
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-success form-control mt-2" value="Submit">
+                                    <input type="submit" class="btn btn-success form-control mt-2" value="Update">
                                     <a href="/posts" class="btn btn-danger mt-2">Home</a>
                                 </div>
                             </form>

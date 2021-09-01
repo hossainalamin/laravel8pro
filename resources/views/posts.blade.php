@@ -13,6 +13,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
+                    @if(Session::has('delete-msg'))
+                    <div class="alert alert-success">
+                        {{Session::get('delete-msg')}}
+                    </div>
+                    @endif
                     <table class="table">
                         <thead>
                             <th>Tilte</th>
@@ -25,8 +30,8 @@
                                     <td>{{$post->title}}</td>
                                     <td>{{$post->body}}</td>
                                     <td><a href="/post/{{$post->id}}" class="btn btn-success">View</a></td>
-                                    <td><a href="/post/{{$post->id}}" class="btn btn-success">Update</a></td>
-                                    <td><a href="/post/{{$post->id}}" class="btn btn-success">Delete</a></td>
+                                    <td><a href="/edit/{{$post->id}}" class="btn btn-success">Update</a></td>
+                                    <td><a href="/delete/{{$post->id}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                                 @endforeach
                         </tbody>

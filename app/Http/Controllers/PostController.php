@@ -25,4 +25,19 @@ class PostController extends Controller
         $get_post = DB::table('posts')->where('id',$id)->first();
         return view('single-post',compact('get_post'));
     }
+    public function delPostById($id){
+        DB::table('posts')->where('id',$id)->delete();
+        return back()->with('delete-msg',"Data deleted");
+    }
+    public function editPostById($id){
+        $post = DB::table('posts')->where('id',$id)->first();
+        return view('edit-post',compact('post'));
+    }
+    public function updatePost(Request $req){
+        DB::table('posts')->where('id',$req->id)->update([
+            'title' => $req->title,
+            'body' => $req->body
+        ]);
+        return back()->with('update-msg',"data updated");
+    }
 }
