@@ -38,6 +38,10 @@ Route::get('/post/{id}',[PostController::class,'getPostById'])->name('post.singl
 Route::get('delete/{id}',[PostController::class,'delPostById'])->name('post.delete')->where('id','[0-9]+');
 Route::get('edit/{id}',[PostController::class,'editPostById'])->name('post.delete')->where('id','[0-9]+');
 Route::post('/edit-post',[PostController::class,'updatePost'])->name('post.update');
+Route::get('/inner-join',[PostController::class,'innerJoin'])->name('inner.get');
+Route::get('/left-join',[PostController::class,'leftJoin'])->name('left.join');
+Route::get('/right-join',[PostController::class,'rightJoin'])->name('right.join');
+Route::get('/model-post',[PostController::class,'getPostFromModel'])->name('model.post');
 
 //middleware
 Route::group(['middleware'=> ['protected']],function(){

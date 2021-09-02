@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -39,5 +40,28 @@ class PostController extends Controller
             'body' => $req->body
         ]);
         return back()->with('update-msg',"data updated");
+    }
+    public function innerJoin(){
+        $inner_join_data = DB::table('users')
+                    ->join('posts','users.id','=','posts.user_id')
+                    ->select('users.name','posts.title','posts.body')
+                    ->get();
+        return $inner_join_data; 
+    }
+    public function leftJoin(){
+        $left_join = DB::table('posts')
+                    ->leftJoin('users','posts.user_id','=','users.id')
+                    ->get();
+        return $left_join;
+    }
+    public function rightJoin(){
+        $right_join = DB::table('posts')
+                    ->leftJoin('users','posts.user_id','=','users.id')
+                    ->get();
+        return $right_join;
+    }
+    public function getPostFromModel(){
+        $posts = Post::all();
+        return $posts;
     }
 }
