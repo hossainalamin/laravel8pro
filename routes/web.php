@@ -22,6 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('protected');
 Route::view('/noaccess', 'noaccess');
+Route::view('/home','index');
+Route::view('/about','about');
+Route::view('/contact','contact');
 
 //controllers
 Route::get('/fluent-string',[FluentController::class,'index'])->name("fluent.index");
