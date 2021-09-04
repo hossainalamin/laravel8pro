@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('title','Home')
 @section('content')
-@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-6">

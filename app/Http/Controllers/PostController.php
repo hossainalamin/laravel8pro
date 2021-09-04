@@ -9,7 +9,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function getAllPost(){
-        $posts = DB::table('posts')->get();
+        $posts = DB::table('posts')->simplePaginate(3);
         return view('posts',compact('posts'));
     }
     public function addPost(){

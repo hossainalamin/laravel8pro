@@ -38,6 +38,7 @@
                     </table>
                 <a href="/addpost" class="btn btn-danger">Add blog</a>
                 </div>
+                {{$posts->links()}}
             </div>
         </div>
     </section>
