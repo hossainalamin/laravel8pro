@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionCotroller;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\mailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,10 @@ use App\Http\Controllers\UploadController;
 |
 */
 
-Route::get('/{locale}', function ($locale) {
-    App::setLocale("$locale");
-    return view('welcome');
-})->middleware('protected');
+// Route::get('/{locale}', function ($locale) {
+//     App::setLocale("$locale");
+//     return view('welcome');
+// })->middleware('protected');
 Route::view('/noaccess', 'noaccess');
 Route::view('/home','index');
 Route::view('/about','about');
@@ -49,6 +50,7 @@ Route::get('/right-join',[PostController::class,'rightJoin'])->name('right.join'
 Route::get('/model-post',[PostController::class,'getPostFromModel'])->name('model.post');
 Route::get('/upload',[UploadController::class,'index'])->name('upload.index');
 Route::post('/upload',[UploadController::class,'uploadSubmit'])->name('upload.submit');
+Route::get('/mail',[mailController::class,'sendMail'])->name('mail.sendMail');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
