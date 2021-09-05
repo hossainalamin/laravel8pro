@@ -6,6 +6,7 @@ use App\Http\Controllers\FormValidation;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionCotroller;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,8 @@ use App\Http\Controllers\SessionCotroller;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{locale}', function ($locale) {
+    App::setLocale("$locale");
     return view('welcome');
 })->middleware('protected');
 Route::view('/noaccess', 'noaccess');
@@ -45,7 +47,8 @@ Route::get('/inner-join',[PostController::class,'innerJoin'])->name('inner.get')
 Route::get('/left-join',[PostController::class,'leftJoin'])->name('left.join');
 Route::get('/right-join',[PostController::class,'rightJoin'])->name('right.join');
 Route::get('/model-post',[PostController::class,'getPostFromModel'])->name('model.post');
-
+Route::get('/upload',[UploadController::class,'index'])->name('upload.index');
+Route::post('/upload',[UploadController::class,'uploadSubmit'])->name('upload.submit');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
