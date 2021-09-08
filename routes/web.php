@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionCotroller;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\mailController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::get('/model-post',[PostController::class,'getPostFromModel'])->name('mode
 Route::get('/upload',[UploadController::class,'index'])->name('upload.index');
 Route::post('/upload',[UploadController::class,'uploadSubmit'])->name('upload.submit');
 Route::get('/mail',[mailController::class,'sendMail'])->name('mail.sendMail');
+Route::get('/student',[StudentController::class,'index'])->name('student.index');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
