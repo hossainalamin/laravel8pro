@@ -9,6 +9,7 @@ use App\Http\Controllers\SessionCotroller;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\mailController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,8 @@ Route::get('/upload',[UploadController::class,'index'])->name('upload.index');
 Route::post('/upload',[UploadController::class,'uploadSubmit'])->name('upload.submit');
 Route::get('/mail',[mailController::class,'sendMail'])->name('mail.sendMail');
 Route::get('/student',[StudentController::class,'index'])->name('student.index');
+Route::get("/product-add",[ProductController::class,'createProduct'])->name('product.add');
+Route::post("/product-submit",[ProductController::class,'productSubmit'])->name('product.submit');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
