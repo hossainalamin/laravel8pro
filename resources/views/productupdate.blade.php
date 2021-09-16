@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add product</title>
+    <title>Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -13,31 +13,32 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
+                        @if(Session::has('update-msg'))
+                        <div class="alert alert-success">
+                            {{Session::get('update-msg')}}
+                        </div>
+                        @endif
                         <div class="card-header">
-                            Add Product
+                            Post edit
                         </div>
                         <div class="card-body">
-                            @if(Session::has('product-notification'))
-                                <div class="alert alert-success">
-                                    {{Session::get('product-notification')}}
-                                </div>
-                            @endif
                             <form action="{{route('product.submit')}}" method="POST">
                                 @csrf
+                                <input type="hidden" value="{{$product_update->id}}" name="id">
                                 <div class="form-group">
-                                    <label for="title">Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Enter product name">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control" value="{{$product_update->product_name}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="price">Price</label>
-                                    <input type="text" name="price" placeholder="Enter product price" class="form-control">
+                                    <input type="text" name="price" class="form-control" value="{{$product_update->price}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="detail">Detail</label>
-                                    <textarea name="detail" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <label for="body">Detail</label>
+                                    <textarea name="detail"  cols="30" rows="10" class="form-control">{{$product_update->detail}}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-success form-control mt-2" value="Submit">
+                                    <input type="submit" class="btn btn-success form-control mt-2" value="Update">
                                     <a href="/product" class="btn btn-danger mt-2">Home</a>
                                 </div>
                             </form>

@@ -44,7 +44,7 @@ Route::get('/addpost',[PostController::class,'addPost'])->name('post.add');
 Route::post('/postsubmit',[PostController::class,'postSubmit'])->name('post.submit');
 Route::get('/post/{id}',[PostController::class,'getPostById'])->name('post.single');
 Route::get('delete/{id}',[PostController::class,'delPostById'])->name('post.delete')->where('id','[0-9]+');
-Route::get('edit/{id}',[PostController::class,'editPostById'])->name('post.delete')->where('id','[0-9]+');
+Route::get('edit/{id}',[PostController::class,'editPostById'])->name('post.edit')->where('id','[0-9]+');
 Route::post('/edit-post',[PostController::class,'updatePost'])->name('post.update');
 Route::get('/inner-join',[PostController::class,'innerJoin'])->name('inner.get');
 Route::get('/left-join',[PostController::class,'leftJoin'])->name('left.join');
@@ -56,6 +56,11 @@ Route::get('/mail',[mailController::class,'sendMail'])->name('mail.sendMail');
 Route::get('/student',[StudentController::class,'index'])->name('student.index');
 Route::get("/product-add",[ProductController::class,'createProduct'])->name('product.add');
 Route::post("/product-submit",[ProductController::class,'productSubmit'])->name('product.submit');
+Route::get('/product',[ProductController::class,'getAllProduct'])->name('product.getproduct');
+Route::get('/singleproduct/{id}',[ProductController::class,'getProductById'])->name('product.getproductbyid');
+Route::get('/deleteproduct/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
+Route::get('/updateproduct/{id}',[ProductController::class,'updateProduct'])->name('product.update');
+Route::post('/update',[ProductController::class,'updateSubmit'])->name('product.submit');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
