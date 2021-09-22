@@ -10,6 +10,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\mailController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,8 @@ Route::get('/singleproduct/{id}',[ProductController::class,'getProductById'])->n
 Route::get('/deleteproduct/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
 Route::get('/updateproduct/{id}',[ProductController::class,'updateProduct'])->name('product.update');
 Route::post('/update',[ProductController::class,'updateSubmit'])->name('product.submit');
+Route::get('/save',[UserController::class,'insertData'])->name('user.insert');
+Route::get('/getphone/{id}',[UserController::class,'fetchData'])->name('phone.get');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
