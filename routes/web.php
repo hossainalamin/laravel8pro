@@ -11,6 +11,8 @@ use App\Http\Controllers\mailController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FbPostController;
+use App\Models\FbPost;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +66,8 @@ Route::get('/updateproduct/{id}',[ProductController::class,'updateProduct'])->na
 Route::post('/update',[ProductController::class,'updateSubmit'])->name('product.submit');
 Route::get('/save',[UserController::class,'insertData'])->name('user.insert');
 Route::get('/getphone/{id}',[UserController::class,'fetchData'])->name('phone.get');
+Route::get('/post-save',[FbPostController::class,'postAdd'])->name('post.add');
+Route::get('/comments-save/{id}',[FbPostController::class,'commentsAdd'])->name('comments.add');
 //middleware
 Route::group(['middleware'=> ['protected']],function(){
     Route::view('/', 'welcome');
